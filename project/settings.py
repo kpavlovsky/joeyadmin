@@ -53,6 +53,7 @@ class ProjectConfig(ProjectBaseConfig):
         'allauth.socialaccount.providers.google',
         'drf_spectacular',
         'smart_selects',
+        'crispy_forms',
     ]
 
     PROJECT_APPS = [
@@ -80,3 +81,6 @@ class ProjectConfig(ProjectBaseConfig):
         'COMPONENT_SPLIT_REQUEST': True,
         # OTHER SETTINGS
     }
+
+    CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+    CRISPY_TEMPLATE_PACK = "bootstrap4"
