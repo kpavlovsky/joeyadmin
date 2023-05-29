@@ -52,7 +52,7 @@ class ManufacturerForm(forms.ModelForm):
 class PartForm(forms.ModelForm):
     class Meta:
         model = Part
-        fields = ['manufacturer', 'name', 'description', 'cost', 'note']
+        fields = ['manufacturer', 'name', 'description', 'cost', 'note', 'link', ]
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

@@ -157,6 +157,7 @@ class Part(models.Model):
     description = models.TextField(blank=True, default='')
     cost = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     note = models.TextField(blank=True, default='')
+    link = models.URLField(blank=True, default='')
 
     def __str__(self):
         return self.name
