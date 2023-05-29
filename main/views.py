@@ -16,7 +16,7 @@ class WorkOrderList(LoginRequiredMixin, ListView):
 
 
 class WorkOrderCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'main/workorder_create.html'
+    template_name = 'main/form.html'
     model = models.WorkOrder
     form_class = WorkOrderForm
     success_url = '/workorders/'
@@ -31,7 +31,7 @@ class ClientList(LoginRequiredMixin, ListView):
 
 
 class ClientCreateView(LoginRequiredMixin, CreateView):
-    template_name = 'main/client_create.html'
+    template_name = 'main/form.html'
     model = models.Client
     form_class = ClientForm
     success_url = '/clients/'
