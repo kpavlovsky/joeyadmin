@@ -11,8 +11,6 @@ User = get_user_model()
 logger = logging.getLogger(__name__)
 
 
-
-
 class Client(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False)
     slug = models.SlugField()
@@ -31,6 +29,7 @@ class Site(models.Model):
     site_name = models.CharField(max_length=255, blank=False, null=False)
     slug = models.SlugField()
     address = models.CharField(max_length=255, blank=True, null=False)
+    note = models.TextField(blank=True, default='')
 
     def __str__(self):
         return self.site_name
@@ -136,3 +135,35 @@ class WebHook(models.Model):
     class Meta:
         verbose_name = 'Webhook'
         verbose_name_plural = 'Webhooks'
+
+
+class Manufacturer(models.Model):
+    name = models.CharField(max_length=255, blank=False, null=False)
+    slug = models.SlugField()
+    note = models.TextField(blank=True, default='')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Manufacturer'
+        verbose_name_plural = 'Manufacturers'
+        ordering = ('name', '-pk',)
+
+
+class Part(models.Model):
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, blank=False, null=False)
+    description = models.TextField(blank=True, default='')
+    cost = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    note = models.TextField(blank=True, default='')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Part'
+        verbose_name_plural = 'Parts'
+        ordering = ('name', '-pk',)
+
+

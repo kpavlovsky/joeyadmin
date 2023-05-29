@@ -44,3 +44,17 @@ class WebhookAdmin(admin.ModelAdmin):
 
 
 admin.site.register(models.WebHook, WebhookAdmin)
+
+
+class PartAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name',)
+
+
+admin.site.register(models.Part, PartAdmin)
+
+
+class ManufacturerAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name',)
+
+
+admin.site.register(models.Manufacturer, ManufacturerAdmin)
