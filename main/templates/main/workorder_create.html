@@ -1,16 +1,10 @@
 {% load crispy_forms_tags %}
-
-<html>
-
-<head>
-    <title>Create workorder</title>
-</head>
-
-<body>
-<form method="post" enctype="multipart/form-data">
-    {% crispy form %}
-    <button type="submit">Create</button>
-    {% csrf_token %}
-</form>
-</body>
-</html>
+{% extends "main/base.html" %}
+{% block title %}Create workorder{% endblock %}
+{% block body %}
+    <form method="post" enctype="multipart/form-data">
+        {% crispy form %}
+        <button type="submit">Create</button>
+        {% csrf_token %}
+    </form>
+{% endblock %}
