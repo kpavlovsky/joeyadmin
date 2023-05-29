@@ -67,7 +67,7 @@ class WorkOrder(models.Model):
     slug = models.CharField(max_length=255, blank=True, null=True)
     title = models.CharField(max_length=255, blank=False, null=False)
     scope = models.TextField(blank=True, null=False)
-    status = models.CharField(max_length=255, blank=False, null=False, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=255, default='open', choices=STATUS_CHOICES, db_index=True)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     is_webhook_sent = models.BooleanField(default=False)

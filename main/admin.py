@@ -27,8 +27,10 @@ class LineItemInline(admin.TabularInline):
 class WorkOrderAdmin(admin.ModelAdmin):
     readonly_fields = ('order_id', 'slug', 'created_by')
     list_display = ('order_id', 'site', 'title', 'webhook_type', 'status', 'created_at',)
-    list_filter = ('status',)
+    list_filter = ('status', 'client', 'site', 'created_at',)
+    search_fields = ('title', 'scope',)
     inlines = [LineItemInline, ]
+    editable_fields = ('title', 'slug', 'client', 'scope', 'status',)
 
     def get_readonly_fields(self, request, obj=None):
         fields = ['order_id', 'slug', 'created_by']
