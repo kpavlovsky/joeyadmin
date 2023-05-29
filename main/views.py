@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView
 from . import models
-from .forms import WorkOrderForm, ClientForm, ManufacturerForm, PartForm
+from .forms import WorkOrderForm, ClientForm, ManufacturerForm, PartForm, LineItemForm
 
 
 # Create your views here.
@@ -87,3 +87,19 @@ class PartCreateView(LoginRequiredMixin, CreateView):
     model = models.Part
     form_class = PartForm
     success_url = '/parts/'
+
+
+class LineItemCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'main/form.html'
+    model = models.LineItem
+    form_class = LineItemForm
+    object: models.LineItem
+
+    def success_url(self):
+        return f'/workorders/{self.object.work_order.pk}'
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.work_order = models.WorkOrder.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return super().form_valid(form)

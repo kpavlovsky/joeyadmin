@@ -171,7 +171,12 @@ class Part(models.Model):
 
 class LineItem(models.Model):
     part = models.ForeignKey(Part, on_delete=models.CASCADE)
+    description = models.TextField(blank=True, default='')
+    location = models.CharField(max_length=255, blank=True, default='')
     quantity = models.IntegerField(default=1)
+    cost = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    extended_cost = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    source = models.TextField(max_length=255, blank=True, default='')
     note = models.TextField(blank=True, default='')
     work_order = models.ForeignKey(WorkOrder, on_delete=models.CASCADE)
     item_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
