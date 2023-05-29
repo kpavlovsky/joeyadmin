@@ -1,0 +1,50 @@
+{% extends "main/base.html" %}
+{% block title %}Sites{% endblock %}
+{% block body %}
+    <h1 class="h1">Sites</h1>
+    {% comment %}Datatable{% endcomment %}
+    <a href="{% url 'sites_create' %}">Create Workorder</a>
+    <table id="sitesTable">
+        <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Client
+            </th>
+            <th>
+                Site Name
+            </th>
+            <th>
+                Slug
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Note
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for site in sites %}
+            <tr>
+                <td>{{ site.id }}</td>
+                <td>{{ site.site_name }}</td>
+                <td>{{ site.slug }}</td>
+                <td>{{ site.address }}</td>
+                <td>{{ site.note }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        $(document).ready(function () {
+            $('#sitesTable').DataTable();
+        });
+    </script>
+
+{% endblock %}

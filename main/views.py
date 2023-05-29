@@ -35,3 +35,18 @@ class ClientCreateView(LoginRequiredMixin, CreateView):
     model = models.Client
     form_class = ClientForm
     success_url = '/clients/'
+
+
+class SiteList(LoginRequiredMixin, ListView):
+    template_name = 'main/site_list.html'
+    context_object_name = 'sites'
+
+    def get_queryset(self):
+        return models.Site.objects.all()
+
+
+class SiteCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'main/form.html'
+    model = models.Site
+    fields = ['client', 'site_name', 'slug', 'address', 'note']
+    success_url = '/sites/'
