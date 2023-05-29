@@ -13,7 +13,7 @@ urlpatterns = [
     path('clients/', ClientList.as_view(), name='clients'),
     path('clients/create', ClientCreateView.as_view(), name='clients_create'),
     path('workorders/create', WorkOrderCreateView.as_view(), name='workorders_create'),
-    path('workorders/<id>', WorkOrderUpdateView.as_view(), name='workorders_edit'),
+    path('workorders/<pk>', WorkOrderUpdateView.as_view(), name='workorders_edit'),
     path('workorders/', WorkOrderList.as_view(), name='workorders'),
     path('user/info', UserInfoAPIView.as_view(), name='user_info'),
 ]
