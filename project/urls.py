@@ -8,8 +8,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from main.api.auth import LogoutView
 
 urlpatterns = [
-
-    path('api/', include('main.urls')),
     path('accounts/', include('allauth.urls')),
     path(settings.ADMIN_URL, admin.site.urls),
     # api authentication
@@ -22,5 +20,6 @@ urlpatterns = [
     path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('chaining/', include('smart_selects.urls')),
-    path('', RedirectView.as_view(url='/api/schema/swagger-ui/', permanent=True)),
+    path('', include('main.urls')),
+    path('schema', RedirectView.as_view(url='/api/schema/swagger-ui/', permanent=True)),
 ]
