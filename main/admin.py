@@ -7,6 +7,7 @@ from . import models
 
 class ClientAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
+    search_fields = ('name',)
 
 
 admin.site.register(models.Client, ClientAdmin)
@@ -14,6 +15,10 @@ admin.site.register(models.Client, ClientAdmin)
 
 class SiteAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("site_name",)}
+    list_display = ('site_name', 'client', 'address', 'note',)
+    list_editable = ('address', 'note', 'client')
+    search_fields = ('site_name', 'address', 'note',)
+    list_filter = ('client',)
 
 
 admin.site.register(models.Site, SiteAdmin)
