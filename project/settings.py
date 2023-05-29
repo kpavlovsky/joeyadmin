@@ -52,6 +52,7 @@ class ProjectConfig(ProjectBaseConfig):
         'allauth.socialaccount',
         'allauth.socialaccount.providers.google',
         'drf_spectacular',
+        'smart_selects',
     ]
 
     PROJECT_APPS = [
