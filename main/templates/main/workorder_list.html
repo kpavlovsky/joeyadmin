@@ -1,6 +1,7 @@
 {% extends "main/base.html" %}
 {% block title %}Work orders{% endblock %}
 {% block body %}
+    <h1 class="h1">Work Orders</h1>
     {% comment %}Datatable{% endcomment %}
     <a href="{% url 'workorders_create' %}">Create Workorder</a>
     <table id="workOrders">
