@@ -1,0 +1,29 @@
+{% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Form{% endblock %}
+{% block body %}
+    <h1 class="h1">Form</h1>
+    {% crispy form %}
+
+
+    <h2 class="h2">BOM</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Part Number</th>
+            <th>Quantity</th>
+            <th>Reference Designator</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in bom %}
+            <tr>
+                <td>{{ item.part_number }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.reference_designator }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

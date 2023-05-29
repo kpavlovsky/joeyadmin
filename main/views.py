@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from . import models
 from .forms import WorkOrderForm, ClientForm, ManufacturerForm, PartForm
 
@@ -17,6 +17,13 @@ class WorkOrderList(LoginRequiredMixin, ListView):
 
 class WorkOrderCreateView(LoginRequiredMixin, CreateView):
     template_name = 'main/form.html'
+    model = models.WorkOrder
+    form_class = WorkOrderForm
+    success_url = '/workorders/'
+
+
+class WorkOrderUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'main/workorder_edit.html'
     model = models.WorkOrder
     form_class = WorkOrderForm
     success_url = '/workorders/'
