@@ -8,7 +8,7 @@
 
 <body>
 <form method="post" enctype="multipart/form-data">
-    {{ my_formset|crispy }}
+    {% crispy form %}
     <button type="submit">Create</button>
     {% csrf_token %}
 </form>
