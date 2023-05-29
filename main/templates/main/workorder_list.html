@@ -5,17 +5,13 @@
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#workorder').DataTable();
-        });
-    </script>
+
 </head>
 
 <body>
 
 {% comment %}Datatable{% endcomment %}
-<table class="#myTable">
+<table class="workOrders">
     <thead>
     <tr>
         <th>
@@ -56,7 +52,9 @@
     </tbody>
 </table>
 <script>
-    let table = new DataTable('#myTable');
+    $(document).ready(function () {
+        $('#workOrders').DataTable();
+    });
 </script>
 
 </body>
