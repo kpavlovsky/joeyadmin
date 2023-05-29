@@ -2,7 +2,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
 
-from main.models import WorkOrder, Client, Site
+from main.models import WorkOrder, Client, Site, Manufacturer
 
 
 class WorkOrderForm(forms.ModelForm):
@@ -31,6 +31,17 @@ class SiteForm(forms.ModelForm):
     class Meta:
         model = Site
         fields = ['client', 'site_name', 'slug', 'address', 'note']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.add_input(Submit('submit', 'Submit'))
+
+
+class ManufacturerForm(forms.ModelForm):
+    class Meta:
+        model = Manufacturer
+        fields = ['name', 'slug', 'note']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

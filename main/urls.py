@@ -1,9 +1,11 @@
 from django.urls import path
 from .api.user import UserInfoAPIView
-from .views import WorkOrderList, WorkOrderCreateView, ClientList, ClientCreateView, SiteList, SiteCreateView
+from .views import WorkOrderList, WorkOrderCreateView, ClientList, ClientCreateView, SiteList, SiteCreateView, \
+    ManufacturerList, ManufacturerCreateView
 
 urlpatterns = [
-
+    path('manufacturers/', ManufacturerList.as_view(), name='manufacturers'),
+    path('manufacturers/create', ManufacturerCreateView.as_view(), name='manufacturers_create'),
     path('sites/', SiteList.as_view(), name='sites'),
     path('sites/create', SiteCreateView.as_view(), name='sites_create'),
     path('clients/', ClientList.as_view(), name='clients'),
