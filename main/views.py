@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 from . import models
-from .forms import WorkOrderForm, ClientForm, ManufacturerForm
+from .forms import WorkOrderForm, ClientForm, ManufacturerForm, PartForm
 
 
 # Create your views here.
@@ -52,7 +52,7 @@ class SiteCreateView(LoginRequiredMixin, CreateView):
     success_url = '/sites/'
 
 
-class ManufacturerList(LoginRequiredMixin, ListView):
+class ManufacturerListView(LoginRequiredMixin, ListView):
     template_name = 'main/manufacturer_list.html'
     context_object_name = 'manufacturers'
 
@@ -65,3 +65,18 @@ class ManufacturerCreateView(LoginRequiredMixin, CreateView):
     model = models.Manufacturer
     form_class = ManufacturerForm
     success_url = '/manufacturers/'
+
+
+class PartListView(LoginRequiredMixin, ListView):
+    template_name = 'main/part_list.html'
+    context_object_name = 'parts'
+
+    def get_queryset(self):
+        return models.Part.objects.all()
+
+
+class PartCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'main/form.html'
+    model = models.Part
+    form_class = PartForm
+    success_url = '/parts/'

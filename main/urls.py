@@ -1,10 +1,12 @@
 from django.urls import path
 from .api.user import UserInfoAPIView
 from .views import WorkOrderList, WorkOrderCreateView, ClientList, ClientCreateView, SiteList, SiteCreateView, \
-    ManufacturerList, ManufacturerCreateView
+    ManufacturerListView, ManufacturerCreateView, PartListView, PartCreateView
 
 urlpatterns = [
-    path('manufacturers/', ManufacturerList.as_view(), name='manufacturers'),
+    path('parts/', PartListView.as_view(), name='parts'),
+    path('parts/create', PartCreateView.as_view(), name='parts_create'),
+    path('manufacturers/', ManufacturerListView.as_view(), name='manufacturers'),
     path('manufacturers/create', ManufacturerCreateView.as_view(), name='manufacturers_create'),
     path('sites/', SiteList.as_view(), name='sites'),
     path('sites/create', SiteCreateView.as_view(), name='sites_create'),

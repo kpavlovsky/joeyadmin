@@ -1,0 +1,51 @@
+{% extends "main/base.html" %}
+{% block title %}Parts{% endblock %}
+{% block body %}
+    <h1 class="h1">Parts</h1>
+    {% comment %}Datatable{% endcomment %}
+    <a href="{% url 'parts_create' %}">Create Part</a>
+    <table id="partsTable">
+        <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Manufacturer
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Cost
+            </th>
+            <th>
+                Note
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for part in parts %}
+            <tr>
+                <td>{{ part.id }}</td>
+                <td>{{ part.manufacturer }}</td>
+                <td>{{ part.name }}</td>
+                <td>{{ part.description }}</td>
+                <td>{{ part.cost }}</td>
+                <td>{{ site.note }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        $(document).ready(function () {
+            $('#partsTable').DataTable();
+        });
+    </script>
+
+{% endblock %}
