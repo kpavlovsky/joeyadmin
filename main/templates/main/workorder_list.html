@@ -1,62 +1,54 @@
-<html>
-
-<head>
-    <title>Workorder</title>
-    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
-</head>
-
-<body>
-
-{% comment %}Datatable{% endcomment %}
-<a href="{% url 'workorders_create' %}">Create Workorder</a>
-<table id="workOrders">
-    <thead>
-    <tr>
-        <th>
-            ID
-        </th>
-        <th>
-            Client
-        </th>
-        <th>
-            Site
-        </th>
-        <th>
-            Title
-        </th>
-        <th>
-            Scope
-        </th>
-        <th>
-            Status
-        </th>
-        <th>
-            Created
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for order in workorders %}
+{% extends "main/base.html" %}
+{% block title %}Work orders{% endblock %}
+{% block body %}
+    {% comment %}Datatable{% endcomment %}
+    <a href="{% url 'workorders_create' %}">Create Workorder</a>
+    <table id="workOrders">
+        <thead>
         <tr>
-            <td>{{ order.id }}</td>
-            <td>{{ order.client }}</td>
-            <td>{{ order.site }}</td>
-            <td>{{ order.title }}</td>
-            <td>{{ order.scope }}</td>
-            <td>{{ order.status }}</td>
-            <td>{{ order.created }}</td>
+            <th>
+                ID
+            </th>
+            <th>
+                Client
+            </th>
+            <th>
+                Site
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Scope
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                Created
+            </th>
         </tr>
-    {% endfor %}
-    </tbody>
-</table>
-<script>
-    $(document).ready(function () {
-        $('#workOrders').DataTable();
-    });
-</script>
+        </thead>
+        <tbody>
+        {% for order in workorders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.client }}</td>
+                <td>{{ order.site }}</td>
+                <td>{{ order.title }}</td>
+                <td>{{ order.scope }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.created }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        $(document).ready(function () {
+            $('#workOrders').DataTable();
+        });
+    </script>
 
-</body>
-</html>
+{% endblock %}

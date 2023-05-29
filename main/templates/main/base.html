@@ -8,22 +8,35 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
             crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
 </head>
 
 <body>
 
 <div class="container">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{% url 'workorders' %}">Work Orders</a> <a class="navbar-brand" href="{% url 'workorders_create' %}">[ + ]</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'workorders' %}">Work Orders</a> <a class="navbar-brand"
+                                                                                 href="{% url 'workorders_create' %}">[
+        + ]</a>
 
-    <a class="navbar-brand" href="{% url 'workorders' %}">Clients</a> <a class="navbar-brand" href="{% url 'workorders_create' %}">[ + ]</a>
+        <a class="navbar-brand" href="{% url 'workorders' %}">Clients</a> <a class="navbar-brand"
+                                                                             href="{% url 'workorders_create' %}">[ +
+        ]</a>
 
-    <a class="navbar-brand" href="{% url 'workorders' %}">Sites</a> <a class="navbar-brand" href="{% url 'workorders_create' %}">[ + ]</a>
+        <a class="navbar-brand" href="{% url 'workorders' %}">Sites</a> <a class="navbar-brand"
+                                                                           href="{% url 'workorders_create' %}">[ +
+        ]</a>
 
-    <a class="navbar-brand" href="{% url 'workorders' %}">Parts</a> <a class="navbar-brand" href="{% url 'workorders_create' %}">[ + ]</a>
+        <a class="navbar-brand" href="{% url 'workorders' %}">Parts</a> <a class="navbar-brand"
+                                                                           href="{% url 'workorders_create' %}">[ +
+        ]</a>
 
-    <a class="navbar-brand" href="{% url 'workorders' %}">Manufacturers</a> <a class="navbar-brand" href="{% url 'workorders_create' %}">[ + ]</a>
-</nav>
+        <a class="navbar-brand" href="{% url 'workorders' %}">Manufacturers</a> <a class="navbar-brand"
+                                                                                   href="{% url 'workorders_create' %}">[
+        + ]</a>
+    </nav>
     {% block body %}
 
     {% endblock %}
