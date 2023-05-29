@@ -88,7 +88,7 @@ class WorkOrder(models.Model):
             "work_order_scope": self.scope,
             "work_order_status": self.get_status_display(),
             "work_order_created_at": str(self.created_at),
-            "work_order_created_by": self.created_by and self.created_by.username,
+            "work_order_created_by": self.created_by and self.created_by.email,
             "site_name": self.site.site_name,
             "site_slug": self.site.slug,
             "site_address": self.site.address,
