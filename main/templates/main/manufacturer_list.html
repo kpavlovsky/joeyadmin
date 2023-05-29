@@ -19,11 +19,11 @@
         </tr>
         </thead>
         <tbody>
-        {% for site in sites %}
+        {% for manufacturer in manufacturers %}
             <tr>
-                <td>{{ site.id }}</td>
-                <td>{{ site.name }}</td>
-                <td>{{ site.slug }}</td>
+                <td>{{ manufacturer.id }}</td>
+                <td>{{ manufacturer.name }}</td>
+                <td>{{ manufacturer.slug }}</td>
             </tr>
         {% endfor %}
         </tbody>
