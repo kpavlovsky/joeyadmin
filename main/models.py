@@ -167,3 +167,17 @@ class Part(models.Model):
         ordering = ('name', '-pk',)
 
 
+class LineItem(models.Model):
+    part = models.ForeignKey(Part, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
+    note = models.TextField(blank=True, default='')
+    work_order = models.ForeignKey(WorkOrder, on_delete=models.CASCADE)
+    item_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return f"{self.part} x {self.quantity}"
+
+    class Meta:
+        verbose_name = 'Line Item'
+        verbose_name_plural = 'Line Items'
+        ordering = ('part', '-pk',)

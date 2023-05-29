@@ -19,10 +19,16 @@ class SiteAdmin(admin.ModelAdmin):
 admin.site.register(models.Site, SiteAdmin)
 
 
+class LineItemInline(admin.TabularInline):
+    model = models.LineItem
+    extra = 1
+
+
 class WorkOrderAdmin(admin.ModelAdmin):
     readonly_fields = ('order_id', 'slug', 'created_by')
     list_display = ('order_id', 'site', 'title', 'webhook_type', 'status', 'created_at',)
     list_filter = ('status',)
+    inlines = [LineItemInline, ]
 
     def get_readonly_fields(self, request, obj=None):
         fields = ['order_id', 'slug', 'created_by']
