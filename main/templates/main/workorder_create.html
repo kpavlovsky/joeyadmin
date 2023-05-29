@@ -1,14 +1,14 @@
+{% load crispy_forms_tags %}
+
 <html>
 
-
-
 <head>
-<title>Create workorder</title>
+    <title>Create workorder</title>
 </head>
 
 <body>
 <form method="post" enctype="multipart/form-data">
-    {%  %}
+    {{ my_formset|crispy }}
     <button type="submit">Create</button>
     {% csrf_token %}
 </form>
