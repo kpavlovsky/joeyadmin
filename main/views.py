@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView
 from . import models
-from .forms import WorkOrderForm
+from .forms import WorkOrderForm, ClientForm
 
 
 # Create your views here.
@@ -33,5 +33,5 @@ class ClientList(LoginRequiredMixin, ListView):
 class ClientCreateView(LoginRequiredMixin, CreateView):
     template_name = 'main/client_create.html'
     model = models.Client
-    fields = '__all__'
+    form_class = ClientForm
     success_url = '/clients/'
