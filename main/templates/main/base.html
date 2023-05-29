@@ -12,10 +12,11 @@
 
 <body>
 
+<div class="container">
+    {% block body %}
 
-{% block body %}
-{% endblock %}
-
+    {% endblock %}
+</div>
 {% block extra_js %}
 {% endblock %}
 </body>
