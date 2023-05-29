@@ -35,7 +35,7 @@ class WorkOrderAdmin(admin.ModelAdmin):
     list_filter = ('status', 'client', 'site', 'created_at',)
     search_fields = ('title', 'scope',)
     inlines = [LineItemInline, ]
-    editable_fields = ('title', 'slug', 'client', 'scope', 'status',)
+    list_editable = ('title', 'slug', 'client', 'scope', 'status',)
 
     def get_readonly_fields(self, request, obj=None):
         fields = ['order_id', 'slug', 'created_by']
