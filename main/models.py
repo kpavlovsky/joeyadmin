@@ -155,12 +155,13 @@ class Part(models.Model):
     manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
     name = models.CharField(max_length=255, blank=False, null=False)
     description = models.TextField(blank=True, default='')
+    part_number = models.CharField(max_length=255, blank=True, default='')
     cost = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     note = models.TextField(blank=True, default='')
     link = models.URLField(blank=True, default='')
 
     def __str__(self):
-        return self.name
+        return self.manufacturer.name + " " + self.name
 
     class Meta:
         verbose_name = 'Part'
