@@ -9,7 +9,6 @@ class WorkOrderForm(forms.ModelForm):
         model = WorkOrder
         fields = ['title', 'scope', 'client', 'site', 'status']
 
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
