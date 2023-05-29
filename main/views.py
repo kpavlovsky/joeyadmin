@@ -27,7 +27,7 @@ class ClientList(LoginRequiredMixin, ListView):
     context_object_name = 'clients'
 
     def get_queryset(self):
-        return self.request.user.client_set.all()
+        return models.Client.objects.all()
 
 
 class ClientCreateView(LoginRequiredMixin, CreateView):
