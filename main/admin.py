@@ -31,7 +31,7 @@ class LineItemInline(admin.TabularInline):
 
 class WorkOrderAdmin(admin.ModelAdmin):
     readonly_fields = ('order_id', 'slug', 'created_by')
-    list_display = ('order_id', 'client', 'site', 'title', 'webhook_type', 'status', 'created_at',)
+    list_display = ('order_id', 'client', 'site', 'title', 'scope', 'slug', 'status', 'created_at', 'webhook_type',)
     list_filter = ('status', 'client', 'site', 'created_at',)
     search_fields = ('title', 'scope',)
     inlines = [LineItemInline, ]
