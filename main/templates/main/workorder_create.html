@@ -5,7 +5,7 @@
 {% block body %}
     <form method="post" enctype="multipart/form-data">
         {% crispy form %}
-        <button type="submit">Create</button>
+        <button type="submit btn btn-primary">Create</button>
         {% csrf_token %}
     </form>
 {% endblock %}
