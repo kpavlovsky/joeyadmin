@@ -20,3 +20,18 @@ class WorkOrderCreateView(LoginRequiredMixin, CreateView):
     model = models.WorkOrder
     form_class = WorkOrderForm
     success_url = '/workorders/'
+
+
+class ClientList(LoginRequiredMixin, ListView):
+    template_name = 'main/client_list.html'
+    context_object_name = 'clients'
+
+    def get_queryset(self):
+        return self.request.user.client_set.all()
+
+
+class ClientCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'main/client_create.html'
+    model = models.Client
+    fields = '__all__'
+    success_url = '/clients/'

@@ -1,0 +1,39 @@
+{% extends "main/base.html" %}
+{% block title %}Clients{% endblock %}
+{% block body %}
+    {% comment %}Datatable{% endcomment %}
+    <a href="{% url 'workorders_create' %}">Create Client</a>
+    <table id="clients">
+        <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Slug
+            </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.name }}</td>
+                <td>{{ client.slug }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block extra_js %}
+    <script>
+        $(document).ready(function () {
+            $('#clients').DataTable();
+        });
+    </script>
+
+{% endblock %}
