@@ -1,0 +1,63 @@
+<html>
+
+<head>
+    <title>Workorder</title>
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#workorder').DataTable();
+        });
+    </script>
+</head>
+
+<body>
+
+{% comment %}Datatable{% endcomment %}
+<table class="#myTable">
+    <thead>
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Client
+        </th>
+        <th>
+            Site
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            Scope
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            Created
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for order in workorders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.client }}</td>
+            <td>{{ order.site }}</td>
+            <td>{{ order.title }}</td>
+            <td>{{ order.scope }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.created }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script>
+    let table = new DataTable('#myTable');
+</script>
+
+</body>
+</html>
