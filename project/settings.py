@@ -54,6 +54,7 @@ class ProjectConfig(ProjectBaseConfig):
         'drf_spectacular',
         'smart_selects',
         'crispy_forms',
+        'crispy_bootstrap4',
     ]
 
     PROJECT_APPS = [
