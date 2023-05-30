@@ -152,7 +152,7 @@ class Manufacturer(models.Model):
 
 
 class Part(models.Model):
-    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE, blank=True, null=True)
     name = models.CharField(max_length=255, blank=False, null=False)
     description = models.TextField(blank=True, default='')
     part_number = models.CharField(max_length=255, blank=True, default='')
@@ -161,6 +161,8 @@ class Part(models.Model):
     link = models.URLField(blank=True, default='')
 
     def __str__(self):
+        if not self.manufacturer:
+            return self.name
         return self.manufacturer.name + " " + self.name
 
     class Meta:

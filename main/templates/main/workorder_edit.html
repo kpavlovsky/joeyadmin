@@ -1,19 +1,48 @@
 {% extends "main/base.html" %}
 {% load crispy_forms_tags %}
-
+{% block container-class %}container-fluid{% endblock %}
 {% block title %}Form{% endblock %}
 {% block body %}
+    <style>
+        form {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+         textarea {
+            width: 100%;
+            max-height: 60px !important;
+        }
+    </style>
     <h1 class="h1">Form</h1>
     {% crispy form %}
 
 
-    <h2 class="h2">BOM [ <a href="{% url 'workorders_add_line_item' object.id %}">Add</a> ]</h2>
+    <h2 class="h2">BOM</h2>
     <table class="table table-striped">
         <thead>
         <tr>
         </tr>
         </thead>
         <tbody>
+        Formset
+        {% for existing_line_item_form in line_item_formset %}
+            <tr>
+                <td>
+                    <div class="line-item-row">
+                        {% crispy existing_line_item_form %}
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>
+                <div class="line-item-row">
+                    {% crispy line_item_form %}
+                </div>
+            </td>
+        </tr>
         </tbody>
     </table>
 {% endblock %}

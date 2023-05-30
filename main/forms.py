@@ -1,6 +1,7 @@
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 from django import forms
+from django.urls import reverse
 
 from main.models import WorkOrder, Client, Site, Manufacturer, Part, LineItem
 
@@ -75,7 +76,12 @@ class LineItemForm(forms.ModelForm):
             'item_price',
         ]
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, work_order_id, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.form_action = reverse('workorders_add_line_item', kwargs={'pk': work_order_id})
+        # print(self.instance)
+        # if self.instance:
+        #     self.helper.add_input(Submit('submit', 'Save'))
+        # else:
+        self.helper.add_input(Submit('submit', 'Create'))

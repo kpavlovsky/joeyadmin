@@ -1,9 +1,12 @@
 from django.urls import path
+from django.views.generic import RedirectView
+
 from .api.user import UserInfoAPIView
 from .views import WorkOrderList, WorkOrderCreateView, ClientList, ClientCreateView, SiteList, SiteCreateView, \
     ManufacturerListView, ManufacturerCreateView, PartListView, PartCreateView, WorkOrderUpdateView, LineItemCreateView
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/workorders/', permanent=True)),
     path('parts/', PartListView.as_view(), name='parts'),
     path('parts/create', PartCreateView.as_view(), name='parts_create'),
     path('manufacturers/', ManufacturerListView.as_view(), name='manufacturers'),

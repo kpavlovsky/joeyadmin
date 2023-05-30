@@ -22,5 +22,6 @@ urlpatterns = [
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
     path('chaining/', include('smart_selects.urls')),
     path('', include('main.urls')),
+
     path('schema', RedirectView.as_view(url='/api/schema/swagger-ui/', permanent=True)),
 ]

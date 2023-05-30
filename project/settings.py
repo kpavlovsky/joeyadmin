@@ -50,7 +50,7 @@ class ProjectConfig(ProjectBaseConfig):
         'allauth',
         'allauth.account',
         'allauth.socialaccount',
-        'allauth.socialaccount.providers.google',
+        # 'allauth.socialaccount.providers.google',
         'drf_spectacular',
         'smart_selects',
         'crispy_forms',

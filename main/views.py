@@ -1,8 +1,9 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.forms.models import formset_factory, modelformset_factory
 from django.views.generic import ListView, CreateView, UpdateView
 from . import models
-from .forms import WorkOrderForm, ClientForm, ManufacturerForm, PartForm, LineItemForm
+from .forms import WorkOrderForm, ClientForm, ManufacturerForm, PartForm, LineItemForm, SiteForm
 
 
 # Create your views here.
@@ -10,9 +11,7 @@ from .forms import WorkOrderForm, ClientForm, ManufacturerForm, PartForm, LineIt
 class WorkOrderList(LoginRequiredMixin, ListView):
     template_name = 'main/workorder_list.html'
     context_object_name = 'workorders'
-
-    def get_queryset(self):
-        return self.request.user.workorder_set.all()
+    model = models.WorkOrder
 
 
 class WorkOrderCreateView(LoginRequiredMixin, CreateView):
@@ -27,6 +26,17 @@ class WorkOrderUpdateView(LoginRequiredMixin, UpdateView):
     model = models.WorkOrder
     form_class = WorkOrderForm
     success_url = '/workorders/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context['line_item_form'] = LineItemForm(work_order_id=self.kwargs['pk'])
+
+        LineItemsFormSet = modelformset_factory(models.LineItem, form=LineItemForm, extra=0, )
+        context['line_item_formset'] = LineItemsFormSet(
+            queryset=models.LineItem.objects.filter(work_order_id=self.kwargs['pk']),
+            form_kwargs={'work_order_id': self.kwargs['pk']})
+        return context
 
 
 class ClientList(LoginRequiredMixin, ListView):
@@ -55,8 +65,13 @@ class SiteList(LoginRequiredMixin, ListView):
 class SiteCreateView(LoginRequiredMixin, CreateView):
     template_name = 'main/form.html'
     model = models.Site
-    fields = ['client', 'site_name', 'slug', 'address', 'note']
+    form_class = SiteForm
     success_url = '/sites/'
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     print(context)
+    #     return context
 
 
 class ManufacturerListView(LoginRequiredMixin, ListView):
@@ -95,7 +110,12 @@ class LineItemCreateView(LoginRequiredMixin, CreateView):
     form_class = LineItemForm
     object: models.LineItem
 
-    def success_url(self):
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['work_order_id'] = self.kwargs['pk']
+        return kwargs
+
+    def get_success_url(self):
         return f'/workorders/{self.object.work_order.pk}'
 
     def form_valid(self, form):
