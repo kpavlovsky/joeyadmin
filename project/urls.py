@@ -8,6 +8,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from main.api.auth import LogoutView
 
 urlpatterns = [
+    path('api/', include('main.api_urls')),
     path('accounts/', include('allauth.urls')),
     path(settings.ADMIN_URL, admin.site.urls),
     # api authentication
